@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+.app {
+  color: #fefefe;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: #041121;
 }
 
-.App-link {
-  color: #61dafb;
+@media screen and (min-width: 500px) {
+  .container {
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input {
+}
+
+.output {
+}
+
+.header {
+  color: #fefefe;
+  font-size: 20pt;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.thermometer-container {
+  /* border: 1px solid white; */
+}
+
+.thermometer {
+  stroke: #444444;
+  stroke-width: 2;
+  fill: #103e76;
+}
+
+.liquid-cold {
+  fill: #a3cbfb;
+  stroke-width: 2;
+}
+
+.liquid-hot {
+  fill: #b63e76;
+  stroke-width: 2;
+}
+
+
+.scale-number {
+  fill: #fefefe;
+  font-size: 3pt;
+}
+
+.temp-display {
+  fill: #fefefe;
+  font-size: 7pt;
+}
+
+.location-input {
+  width: 14em;
+  max-width: 90vw;
 }
