@@ -67,3 +67,9 @@
   width: 14em;
   max-width: 90vw;
 }
+
+.loading {
+  position: absolute;
+  left: 2em;
+  bottom: 2em;
+}

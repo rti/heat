@@ -9,6 +9,7 @@ class Thermometer extends React.Component {
     super(props);
     this.state = {
       weather: null,
+      loading: false,
     }
 
     // https://reactjs.org/docs/handling-events.html
@@ -20,13 +21,18 @@ class Thermometer extends React.Component {
   }
 
   queryWeather(city) {
+    this.setState({loading: true});
+
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city +
       '&units=metric&appid=')
     .then(res => res.json())
     .then((data) => {
-      this.setState({ weather: data });
+      this.setState({ weather: data, loading: false });
     })
-    .catch(console.log);
+    .catch((e) => {
+      console.log(e);
+      this.setState({loading: false});
+    });
   }
 
   componentDidMount() {
@@ -44,6 +50,11 @@ class Thermometer extends React.Component {
         </div>
         <div className="output">
           <Scale weather={this.state.weather} />
+        </div>
+        <div
+          className="loading"
+          style={{display: this.state.loading === true ? 'block':'none'}}>
+          Loading...
         </div>
       </div>
     );
