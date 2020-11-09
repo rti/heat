@@ -10,6 +10,7 @@ class Thermometer extends React.Component {
     this.state = {
       weather: null,
       loading: false,
+      queryStartTimeout: null
     }
 
     // https://reactjs.org/docs/handling-events.html
@@ -17,7 +18,12 @@ class Thermometer extends React.Component {
   }
 
   handleLocationChange(e) {
-    this.queryWeather(e.target.value);
+    clearTimeout(this.state.queryStartTimeout);
+
+    this.setState({
+      queryStartTimeout: setTimeout(() =>
+        this.queryWeather(e.target.value), 200),
+    })
   }
 
   queryWeather(city) {
