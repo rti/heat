@@ -2,39 +2,49 @@ import './App.css';
 
 import React from 'react';
 
-const location_default = '';
+const location_default = 'Berlin';
 
 class Thermometer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      location: location_default,
       weather: null,
       loading: false,
-      queryStartTimeout: null
     }
+
+    this.queryStartTimeout = null;
+    this.queryAbortController = null;
 
     // https://reactjs.org/docs/handling-events.html
     this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
   handleLocationChange(e) {
-    clearTimeout(this.state.queryStartTimeout);
+    this.setState({location: e.target.value})
+
+    clearTimeout(this.queryStartTimeout);
+
+    if(this.queryAbortController !== null ) {
+      this.queryAbortController.abort();
+    }
 
     this.setState({
       queryStartTimeout: setTimeout(() =>
-        this.queryWeather(e.target.value), 200),
+        this.queryWeather(), 200),
     })
   }
 
-  queryWeather(city) {
-    if(!city || city.length === 0) {
-      return;
-    }
-
+  queryWeather() {
     this.setState({loading: true});
 
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city +
-      '&units=metric&appid=')
+    this.queryAbortController = new AbortController();
+
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' +
+      this.state.location +
+      '&units=metric&appid=', {
+        signal: this.queryAbortController.signal
+    })
     .then(res => res.json())
     .then((data) => {
       this.setState({ weather: data, loading: false });
@@ -46,7 +56,7 @@ class Thermometer extends React.Component {
   }
 
   componentDidMount() {
-    this.queryWeather(location_default);
+    this.queryWeather();
   }
 
   render() {
@@ -56,7 +66,9 @@ class Thermometer extends React.Component {
           <header className="header">
               Check for heat in
             </header>
-          <LocationInput handleChange={this.handleLocationChange} />
+          <LocationInput
+            location={this.state.location}
+            handleChange={this.handleLocationChange} />
         </div>
         <div className="output">
           <Scale weather={this.state.weather} />
@@ -74,7 +86,8 @@ class Thermometer extends React.Component {
 class LocationInput extends React.Component {
   render() {
     return (<input type="text" className="location-input"
-      placeholder="Enter a location" onChange={this.props.handleChange} />);
+      value={this.props.location} placeholder="Enter a location"
+      onChange={this.props.handleChange} />);
   }
 }
 
