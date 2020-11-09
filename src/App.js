@@ -27,6 +27,10 @@ class Thermometer extends React.Component {
   }
 
   queryWeather(city) {
+    if(!city || city.length === 0) {
+      return;
+    }
+
     this.setState({loading: true});
 
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city +
