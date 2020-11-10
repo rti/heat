@@ -136,7 +136,7 @@ class Scale extends React.Component {
 
     return (
       <svg className="thermometer-container"
-        width="200" height="400" viewBox="0 0 60 130">
+        width="300" height="70vh" viewBox="0 0 50 130">
         <rect width={30} height={100}
           x={padding} y={padding} ry={0} rx={0}
           className="thermometer" />
