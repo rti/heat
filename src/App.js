@@ -113,13 +113,14 @@ class Thermometer extends React.Component {
     const liquid_step = 1.5;
     const liquid_0_y = 73;
     const liquid_0_height = 28;
-    const liquid_hot_threshold = 20;
 
-    const liquid_y = (liquid * liquid_step * -1) + liquid_0_y;
-    const liquid_height = (liquid * liquid_step) + liquid_0_height;
+    const liquid_hot_threshold = 20;
 
     let liquid_rect = null;
     if(temp != null) {
+      const liquid_y = (liquid * liquid_step * -1) + liquid_0_y;
+      const liquid_height = (liquid * liquid_step) + liquid_0_height;
+
       liquid_rect = (
         <rect width={28} height={liquid_height}
           x={padding + 1} y={padding + liquid_y - 2} ry={0} rx={0}
