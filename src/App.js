@@ -81,12 +81,9 @@ class Thermometer extends React.Component {
           </div>
         </div>
         <div className="made-with">
-          <p>
-            Data provided by
-          </p>
           <a target="_blank" href="https://openweathermap.org/" rel="noreferrer">
             <img src="openweathermap.png" alt="openweathermap.org logo" style={{
-              width: '10vw',
+              width: '15vw',
             }}/>
           </a>
         </div>
@@ -148,7 +145,7 @@ class Scale extends React.Component {
 
     return (
       <svg className="thermometer-container"
-        width="300" height="70vh" viewBox="0 0 50 130">
+        viewBox="0 0 50 130" style={{height:'70vh'}}>
         <rect width={30} height={100}
           x={padding} y={padding} ry={0} rx={0}
           className="thermometer" />
