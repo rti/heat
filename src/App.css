@@ -37,7 +37,7 @@
 }
 
 .thermometer {
-  stroke: #444444;
+  stroke: #374758;
   stroke-width: 2;
   fill: #103e76;
 }
@@ -66,7 +66,7 @@
 .location-input {
   width: 10em;
   color: #fefefe;
-  background-color: #444444;
+  background-color: #374758;
   border: none;
   padding: 0.3em;
   max-width: 90vw;
