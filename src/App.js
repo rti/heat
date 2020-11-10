@@ -48,7 +48,7 @@ class Thermometer extends React.Component {
       this.setState({ weather: data, loading: false });
     })
     .catch((e) => {
-      console.log(e);
+      // console.log(e);
       this.setState({loading: false});
     });
   }
