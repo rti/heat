@@ -67,7 +67,7 @@
   font-size: 20pt;
 }
 
-.loading {
+.loading-wrapper {
   position: absolute;
   left: 2em;
   bottom: 2em;
@@ -80,6 +80,11 @@
   right: 2em;
   bottom: 2em;
 }
+@media (min-aspect-ratio: 3/1) {
+  .loading-wrapper {
+    display: none;
+  }
+ } 
 
 .made-with p {
   margin: 0.5em;

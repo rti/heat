@@ -73,10 +73,12 @@ class Thermometer extends React.Component {
         <div className="output">
           <Scale weather={this.state.weather} />
         </div>
-        <div
-          className="loading"
-          style={{display: this.state.loading === true ? 'block':'none'}}>
-          Loading...
+        <div className="loading-wrapper">
+          <div
+            className="loading"
+            style={{display: this.state.loading === true ? 'block':'none'}}>
+            Loading...
+          </div>
         </div>
         <div className="made-with">
           <p>
