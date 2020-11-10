@@ -3,13 +3,13 @@ import React from 'react';
 import './App.css';
 import Forkmeongithub from './forkmeongithub.js';
 
-const location_default = 'Berlin';
+const LOCATION_DEFAULT = 'Berlin';
 
 class Thermometer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: location_default,
+      location: LOCATION_DEFAULT,
       weather: null,
       loading: false,
     }
