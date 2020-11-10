@@ -2,6 +2,7 @@ import React from 'react';
 
 import './App.css';
 import Forkmeongithub from './forkmeongithub.js';
+import OpenWeatherMap from './openweathermap.js';
 
 const LOCATION_DEFAULT = 'Berlin';
 
@@ -80,13 +81,7 @@ class Thermometer extends React.Component {
             Loading...
           </div>
         </div>
-        <div className="made-with">
-          <a target="_blank" href="https://openweathermap.org/" rel="noreferrer">
-            <img src="openweathermap.png" alt="openweathermap.org logo" style={{
-              width: '15vw',
-            }}/>
-          </a>
-        </div>
+        <OpenWeatherMap />
       </div>
     );
   }
