@@ -6,7 +6,7 @@ import OpenWeatherMap from './openweathermap.js';
 
 const LOCATION_DEFAULT = 'Berlin';
 
-class Thermometer extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -152,14 +152,6 @@ class Scale extends React.Component {
       </svg>
     );
   }
-}
-
-function App() {
-  return (
-    <div className="app">
-      <Thermometer />
-    </div>
-  );
 }
 
 export default App;
