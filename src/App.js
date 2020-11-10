@@ -6,42 +6,61 @@ import OpenWeatherMap from './openweathermap.js';
 
 const LOCATION_DEFAULT = 'Berlin';
 
+// the app's main component
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // the location string entered by the user
       location: LOCATION_DEFAULT,
+
+      // data provided by weather api
       weather: null,
+
+      // currently loading data from api flag
       loading: false,
     }
 
+    // starting the api request after a short timeout only if there was no more
+    // input given by the user. this reduces the amount of request sent to the
+    // api while typing.
     this.queryStartTimeout = null;
+
+    // aborting any currently running api request before starting a new one in
+    // order to prevent race conditions
     this.queryAbortController = null;
 
     // https://reactjs.org/docs/handling-events.html
     this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
+  // the user entered characters into the location input
   handleLocationChange(e) {
     this.setState({location: e.target.value})
 
+    // if there was an api request about to start, cancel
     clearTimeout(this.queryStartTimeout);
 
+    // if the is an abort controller, abort any possibly running api requests
     if(this.queryAbortController !== null ) {
       this.queryAbortController.abort();
     }
 
+    // start the next api request after a short delay
     this.setState({
       queryStartTimeout: setTimeout(() =>
         this.queryWeather(), 200),
     })
   }
 
+  // request data from weather api
   queryWeather() {
     this.setState({loading: true});
 
+    // a fresh abort controller required for every fetch()
     this.queryAbortController = new AbortController();
 
+    // start the actual request and store the result in this.state.weather
     fetch('/.netlify/functions/weather?q=' + this.state.location, {
         signal: this.queryAbortController.signal
     })
@@ -50,12 +69,12 @@ class App extends React.Component {
       this.setState({ weather: data, loading: false });
     })
     .catch((e) => {
-      // console.log(e);
       this.setState({loading: false});
     });
   }
 
   componentDidMount() {
+    // inicially query the weather once for LOCATION_DEFAULT
     this.queryWeather();
   }
 
@@ -87,6 +106,7 @@ class App extends React.Component {
   }
 }
 
+// user location text input
 class LocationInput extends React.Component {
   render() {
     return (<input type="text" className="location-input"
@@ -95,27 +115,40 @@ class LocationInput extends React.Component {
   }
 }
 
+// thermometer visulization
 class Thermometer extends React.Component {
   render() {
+    // temperature in degree celsius
     let temp = null;
 
+    // get temperature
     if(this.props.weather && this.props.weather.main) {
       temp = this.props.weather.main.temp;
     }
 
+    // minimum and maximum temperature to display via the liquid level
     const liquid_min = -15;
     const liquid_max = 45;
 
+    // the liquid level to display
     let liquid = Math.max(liquid_min, Math.min(liquid_max, temp));
 
+    // padding of the thermometer inside the svg element
     const padding = 10;
 
+    // liquid delta per degree celsius
     const liquid_step = 1.5;
+
+    // liquid y position at 0°C
     const liquid_0_y = 73;
+
+    // liquid height position at 0°C
     const liquid_0_height = 28;
 
+    // temperature to consider "hot"
     const liquid_hot_threshold = 20;
 
+    // generate rect to display thermometer liquid
     let liquid_rect = null;
     if(temp != null) {
       const liquid_y = (liquid * liquid_step * -1) + liquid_0_y;
@@ -129,6 +162,7 @@ class Thermometer extends React.Component {
       );
     }
 
+    // generate numbers on the side of the thermometer, the scale
     let scale = [];
     [-10, 0, 10, 20, 30, 40].forEach((item, i) => {
       scale.push(
@@ -139,6 +173,7 @@ class Thermometer extends React.Component {
       );
     });
 
+    // render thermometer container, thermometer, liquid, scale and temp display
     return (
       <svg className="thermometer-container"
         viewBox="0 0 50 130" style={{height:'70vh'}}>
