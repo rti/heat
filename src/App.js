@@ -76,6 +76,16 @@ class Thermometer extends React.Component {
           style={{display: this.state.loading === true ? 'block':'none'}}>
           Loading...
         </div>
+        <div className="made-with">
+          <p>
+            Data provided by
+          </p>
+          <a target="_blank" href="https://openweathermap.org/" rel="noreferrer">
+            <img src="openweathermap.png" alt="openweathermap.org logo" style={{
+              width: '10vw',
+            }}/>
+          </a>
+        </div>
       </div>
     );
   }

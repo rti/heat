@@ -78,3 +78,14 @@
   left: 2em;
   bottom: 2em;
 }
+
+.made-with {
+  font-size: 8pt;
+  position: absolute;
+  right: 2em;
+  bottom: 2em;
+}
+
+.made-with p {
+  margin: 0.5em;
+}
