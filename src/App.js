@@ -72,7 +72,7 @@ class App extends React.Component {
             handleChange={this.handleLocationChange} />
         </div>
         <div className="output">
-          <Scale weather={this.state.weather} />
+          <Thermometer weather={this.state.weather} />
         </div>
         <div className="loading-wrapper">
           <div
@@ -95,7 +95,7 @@ class LocationInput extends React.Component {
   }
 }
 
-class Scale extends React.Component {
+class Thermometer extends React.Component {
   render() {
     let temp = null;
 
