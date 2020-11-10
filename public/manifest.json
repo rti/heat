@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Heat",
+  "name": "Display the current temperature of locations around the world",
   "icons": [
     {
       "src": "favicon.ico",
