@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 
 const location_default = 'Berlin';
+const openweathermap_api_key = '';
 
 class Thermometer extends React.Component {
   constructor(props) {
@@ -41,8 +42,7 @@ class Thermometer extends React.Component {
     this.queryAbortController = new AbortController();
 
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' +
-      this.state.location +
-      '&units=metric&appid=', {
+      this.state.location + '&units=metric&appid=' + openweathermap_api_key, {
         signal: this.queryAbortController.signal
     })
     .then(res => res.json())
@@ -127,7 +127,7 @@ class Scale extends React.Component {
     let scale = [];
     [-10, 0, 10, 20, 30, 40].forEach((item, i) => {
       scale.push(
-        <text x={43} y={padding + liquid_0_y + (liquid_step * item * -1)}
+        <text x={42} y={padding + liquid_0_y + (liquid_step * item * -1)}
           className="scale-number" key={'scale-number-' + i}>
           {item}
         </text>
