@@ -3,7 +3,6 @@ import './App.css';
 import React from 'react';
 
 const location_default = 'Berlin';
-const openweathermap_api_key = '';
 
 class Thermometer extends React.Component {
   constructor(props) {
@@ -41,8 +40,7 @@ class Thermometer extends React.Component {
 
     this.queryAbortController = new AbortController();
 
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' +
-      this.state.location + '&units=metric&appid=' + openweathermap_api_key, {
+    fetch('/.netlify/functions/weather?q=' + this.state.location, {
         signal: this.queryAbortController.signal
     })
     .then(res => res.json())
