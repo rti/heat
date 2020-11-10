@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 import Forkmeongithub from './forkmeongithub.js';
-import OpenWeatherMap from './openweathermap.js';
+import OpenWeatherMapLogo from './openweathermaplogo.js';
 
 const LOCATION_DEFAULT = 'Berlin';
 
@@ -100,7 +100,7 @@ class App extends React.Component {
             Loading...
           </div>
         </div>
-        <OpenWeatherMap />
+        <OpenWeatherMapLogo />
       </div>
     );
   }

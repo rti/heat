@@ -1,6 +1,6 @@
 import React from 'react';
 
-function OpenWeatherMap(props) {
+function OpenWeatherMapLogo(props) {
   return (
     <div className="made-with">
       <a target="_blank" href="https://openweathermap.org/" rel="noreferrer">
@@ -12,4 +12,4 @@ function OpenWeatherMap(props) {
   );
 }
 
-export default OpenWeatherMap;
+export default OpenWeatherMapLogo;
