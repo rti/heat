@@ -1,6 +1,7 @@
-import './App.css';
-
 import React from 'react';
+
+import './App.css';
+import Forkmeongithub from './forkmeongithub.js';
 
 const location_default = 'Berlin';
 
@@ -60,6 +61,7 @@ class Thermometer extends React.Component {
   render() {
     return (
       <div className="container">
+        <Forkmeongithub />
         <div className="input">
           <header className="header">
               Check for heat in
