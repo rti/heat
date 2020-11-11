@@ -41,7 +41,7 @@ class App extends React.Component {
     // if there was an api request about to start, cancel
     clearTimeout(this.queryStartTimeout);
 
-    // if the is an abort controller, abort any possibly running api requests
+    // if there is an abort controller, abort any possibly running api requests
     if(this.queryAbortController !== null ) {
       this.queryAbortController.abort();
     }
@@ -126,11 +126,11 @@ class Thermometer extends React.Component {
       temp = this.props.weather.main.temp;
     }
 
-    // minimum and maximum temperature to display via the liquid level
+    // minimum and maximum temperature to display via liquid level
     const liquid_min = -15;
     const liquid_max = 45;
 
-    // the liquid level to display
+    // liquid level to display
     let liquid = Math.max(liquid_min, Math.min(liquid_max, temp));
 
     // padding of the thermometer inside the svg element
